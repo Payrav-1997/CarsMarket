@@ -12,6 +12,8 @@ using CarMarket.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using CarMarket.Data.Interfaces;
+using CarMarket.Data.Mock;
 
 namespace CarMarket
 {
@@ -34,6 +36,9 @@ namespace CarMarket
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
             services.AddRazorPages();
+            services.AddTransient<IAllCars, MockCars>();
+            services.AddTransient<ICarsCategory, MockCategory>();
+            services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

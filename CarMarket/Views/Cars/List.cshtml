@@ -1,0 +1,17 @@
+﻿@using CarMarket.Models
+@model IEnumerable<CarModel>
+
+@{ 
+    Layout = null;
+}
+
+<h2>Все автомобили</h2>
+@{ 
+    foreach (var car in Model)
+    {
+        <div>
+            <h2>Модель:@car.name</h2>
+            <p>Цена:@car.price.ToString("c")</p>
+        </div>
+    }
+}
