@@ -16,6 +16,7 @@ namespace CarMarket.Models
         public bool isFavorite { get; set; }
         public bool available { get; set; }
         public int categoryId { get; set; }
-       
+        public virtual Category Category { get; set; }
+
     }
 }
