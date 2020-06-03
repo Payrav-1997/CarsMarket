@@ -1,4 +1,5 @@
 ﻿using CarMarket.Data.Interfaces;
+using CarMarket.Views;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -20,8 +21,11 @@ namespace CarMarket.Controllers
         }
         public ViewResult List()
         {
-            var cars = _allCars.Cars;
-            return View(cars);
+            ViewBag.Title = "Страница с автомобилями";
+            CarsListViewModel obj = new CarsListViewModel();
+            obj.allCars = _allCars.Cars;
+            obj.currCategory = "Автомобили";          
+            return View(obj);
         }
     }
 }
