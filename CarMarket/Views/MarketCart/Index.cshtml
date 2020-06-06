@@ -2,7 +2,7 @@
 <div class="container">
     @foreach (var element in Model.cart.listCartItems)
     {
-        <div class="alert alert-warning mt-3">
+        <div class="alert alert-warning mt-5">
             <b>Автомобиль:</b>@element.car.name<br />
             <b>Цена:</b>@element.car.price.ToString("c")
         </div>

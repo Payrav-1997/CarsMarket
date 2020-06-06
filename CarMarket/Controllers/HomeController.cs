@@ -6,32 +6,28 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using CarMarket.Models;
+using CarMarket.Data.Interfaces;
+using CarMarket.Views.ViewModels;
 
 namespace CarMarket.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly IAllCars _allCars;
+        private readonly ICarsCategory _allCategories;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(IAllCars iAllCars)
         {
-            _logger = logger;
+            _allCars = iAllCars;
         }
 
-        public IActionResult Index()
+        public ViewResult Index()
         {
-            return View();
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            var homeCars = new HomeViewModel
+            {
+                favCars = _allCars.getFavCars
+            };
+            return View(homeCars);
         }
     }
 }
