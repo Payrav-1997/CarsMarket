@@ -13,31 +13,33 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using CarMarket.Data.Interfaces;
-using CarMarket.Data.Mock;
+using CarMarket.Data.Repository;
 
 namespace CarMarket
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
+        private IConfigurationRoot Configuration;
 
-        public IConfiguration Configuration { get; }
+        public Startup(IHostEnvironment configuration)
+        {
+            Configuration = new ConfigurationBuilder().SetBasePath(configuration.ContentRootPath).AddJsonFile("appsettings.json").Build();
+            
+        }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationDbContext>(options =>
+
+            services.AddDbContext<AppDbContent>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+                .AddEntityFrameworkStores<AppDbContent>();
             services.AddControllersWithViews();
             services.AddRazorPages();
-            services.AddTransient<IAllCars, MockCars>();
-            services.AddTransient<ICarsCategory, MockCategory>();
+            services.AddTransient<IAllCars,CarRepository>();
+            services.AddTransient<ICarsCategory, CategoryRepository>();
             services.AddMvc();
         }
 
@@ -70,6 +72,16 @@ namespace CarMarket
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
+
+            
+            using (var scope = app.ApplicationServices.CreateScope())
+            {
+                AppDbContent content = scope.ServiceProvider.GetRequiredService<AppDbContent>();
+                DBobjects.Initial(content);
+            }
+
+
+
         }
     }
 }

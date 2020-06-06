@@ -15,8 +15,9 @@ namespace CarMarket.Data.Mock
             {
                 return new List<Category>
                 {
-                    new Category {categoryName = "Электромобили",desc = "Современный вид транспорта"},
-                    new Category{categoryName= "Классические автомобили",desc="Машины с двигателем внутреннего загорания"}
+                    new Category{categoryName = "Электромобили",desc="Современный вид транспорта"},
+                    new Category{categoryName = "Классические автомобили",desc="Машины с дивгателем внутренного згорания"},
+
                 };
             }
         }

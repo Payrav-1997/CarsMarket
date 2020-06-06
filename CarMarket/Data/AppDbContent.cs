@@ -1,16 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using CarMarket.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace CarMarket.Data
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class AppDbContent : DbContext
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+        public AppDbContent(DbContextOptions<AppDbContent> options)
             : base(options)
         {
+
         }
+        public DbSet<CarModel> Car { get; set; }
+        public DbSet<Category> Category { get; set; }
+
     }
 }
