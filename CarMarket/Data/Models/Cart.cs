@@ -31,7 +31,7 @@ namespace CarMarket.Data.Models
             return new Cart(context) { CartMarketId = cartMarketId };
         }
 
-        public void AddToCart (CarModel car,int amout)
+        public void AddToCart (CarModel car)
         {
             appDbContent.CartMarketItem.Add(new CartMarketItem {
 

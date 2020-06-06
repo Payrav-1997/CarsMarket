@@ -1,4 +1,5 @@
-﻿using CarMarket.Data.Models;
+﻿using CarMarket.Data.Interfaces;
+using CarMarket.Data.Models;
 using CarMarket.Data.Repository;
 using CarMarket.Views.ViewModels;
 using Microsoft.AspNetCore.Mvc;
@@ -11,10 +12,10 @@ namespace CarMarket.Controllers
 {
     public class MarketCartController : Controller
     {
-        private readonly CarRepository _carRepository;
+        private readonly IAllCars _carRepository;
         private readonly Cart _cart;
 
-        public MarketCartController(CarRepository carRep, Cart cart)
+        public MarketCartController(IAllCars carRep, Cart cart)
         {
             _carRepository = carRep;
             _cart = cart;
@@ -29,7 +30,18 @@ namespace CarMarket.Controllers
                 cart = _cart
             };
             return View(obj);
-
         }
+
+        public RedirectToActionResult addToCart ( int id )
+        {
+            var item = _carRepository.Cars.FirstOrDefault(p=>p.Id==id);
+            if (item != null)
+            {
+                _cart.AddToCart(item);
+            }
+
+            return RedirectToAction("Index");
+        }
+            
     }
 }

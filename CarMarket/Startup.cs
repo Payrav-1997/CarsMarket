@@ -44,7 +44,7 @@ namespace CarMarket
             services.AddTransient<ICarsCategory, CategoryRepository>();
             
             //Добавляю карзину
-            services.AddSingleton<IHttpContextAccessor, IHttpContextAccessor>();
+            services.AddSingleton<IHttpContextAccessor,HttpContextAccessor>();
             services.AddScoped(p => Cart.GetCart(p));
 
             services.AddMvc();

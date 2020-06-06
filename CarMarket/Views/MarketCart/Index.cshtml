@@ -1,0 +1,13 @@
+﻿@model CarMarket.Views.ViewModels.MarketCartViewModel
+<div class="container">
+    @foreach (var element in Model.cart.listCartItems)
+    {
+        <div class="alert alert-warning mt-3">
+            <b>Автомобиль:</b>@element.car.name<br />
+            <b>Цена:</b>@element.car.price.ToString("c")
+        </div>
+    }
+    <hr />
+
+    <div class="btn badge-danger" asp-controller="Order">Оплатить</div>
+</div>
