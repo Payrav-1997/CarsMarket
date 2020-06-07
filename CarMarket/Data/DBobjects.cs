@@ -29,7 +29,7 @@ namespace CarMarket.Data
                         price = 45000,
                         isFavorite = true,
                         available = true,
-                        Category = Categories["Электромобили"]
+                        Category = Categories["Tesla"]
                     },
 
                     new CarModel
@@ -41,7 +41,7 @@ namespace CarMarket.Data
                         price = 45000,
                         isFavorite = true,
                         available = true,
-                        Category = Categories["Классические автомобили"]
+                        Category = Categories["BMW"]
                     },
 
                     new CarModel
@@ -53,7 +53,7 @@ namespace CarMarket.Data
                         price = 45000,
                         isFavorite = true,
                         available = true,
-                        Category = Categories["Классические автомобили"]
+                        Category = Categories["Mercedes"]
                     },
                     
                     new CarModel
@@ -65,7 +65,7 @@ namespace CarMarket.Data
                         price = 45000,
                         isFavorite = true,
                         available = true,
-                        Category = Categories["Классические автомобили"]
+                        Category = Categories["Lada"]
                     }
                     );
             }
@@ -82,8 +82,10 @@ namespace CarMarket.Data
                 {
                     var list = new Category[]
                     {
-                         new Category {categoryName = "Электромобили",desc = "Современный вид транспорта"},
-                         new Category{categoryName= "Классические автомобили",desc="Машины с двигателем внутреннего загорания"}
+                         new Category {categoryName = "Tesla",desc = "Современный вид транспорта"},
+                         new Category {categoryName = "BMW",desc = "Современный вид транспорта"},
+                         new Category {categoryName = "Mercedes",desc = "Современный вид транспорта"},
+                         new Category {categoryName = "Lada",desc = "Современный вид транспорта"}
                     };
                     category = new Dictionary<string, Category>();
                     foreach  (Category element in list)

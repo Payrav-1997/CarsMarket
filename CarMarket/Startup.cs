@@ -42,7 +42,8 @@ namespace CarMarket
             services.AddRazorPages();
             services.AddTransient<IAllCars,CarRepository>();
             services.AddTransient<ICarsCategory, CategoryRepository>();
-            
+            services.AddTransient<IAllOrders, OrdersRepository>();
+
             //Добавляю карзину
             services.AddSingleton<IHttpContextAccessor,HttpContextAccessor>();
             services.AddScoped(p => Cart.GetCart(p));
@@ -78,15 +79,20 @@ namespace CarMarket
             app.UseAuthentication();
             app.UseAuthorization();
 
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
+                endpoints.MapControllerRoute(
+                    name: "categoryFilter",
+                    pattern: "Cars/{action}/{category?}", defaults: new { Controller = "Cars", action = "List" });
+                endpoints.MapRazorPages();
             });
 
-            
+
             using (var scope = app.ApplicationServices.CreateScope())
             {
                 AppDbContent content = scope.ServiceProvider.GetRequiredService<AppDbContent>();
