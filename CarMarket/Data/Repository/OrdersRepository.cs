@@ -30,8 +30,8 @@ namespace CarMarket.Data.Repository
                 var orderDetail = new OrderDetail()
                 {
                     CarID = item.car.Id,
-                    orderID=order.id,
-                    prise=item.car.price
+                    orderID = order.id,
+                    prise = item.car.price
                 };
                 appDbContent.OrderDetail.Add(orderDetail);
             }

@@ -5,6 +5,11 @@
     <UserSecretsId>aspnet-CarMarket-A777A6FD-991A-48AC-9762-7CA1E9EEBC7B</UserSecretsId>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Migrations\20200607125536_Order.cs" />
+    <Compile Remove="Migrations\20200607125536_Order.Designer.cs" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="JSON" Version="1.0.1" />

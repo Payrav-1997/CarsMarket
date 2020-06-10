@@ -11,6 +11,7 @@ namespace CarMarket.Data.Models
     {
         [BindNever]
         public int id { get; set; }
+
         [Display(Name = "Имя")]
         [StringLength(20)]
         [Required(ErrorMessage ="Имя не указана!")]
@@ -26,7 +27,7 @@ namespace CarMarket.Data.Models
         [Required(ErrorMessage = "Укажите адрес!")]
         public string adress { get; set; }
 
-        [Display(Name = "Номер телефона!")]
+        [Display(Name = "Номер телефона")]
         [DataType(DataType.PhoneNumber)]
         [StringLength(20)]
         [Required(ErrorMessage = "Укажите номер телефона!")]
